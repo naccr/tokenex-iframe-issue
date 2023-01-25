@@ -14,7 +14,18 @@ Example based on https://jsfiddle.net/TokenExSupport/jupnz2rf/, to show loading 
    
 Passed tokenex iframe config can be found in console:
 ```json
-todo
+{
+  "origin": "https://naccr.github.io,file://",
+  "timestamp": "20230125131514",
+  "tokenExID": "6468548879812671",
+  "tokenScheme": "1",
+  "authenticationKey": "Xmp3kptiyNkgGKGb0NZbTszRW3AJRbTdrGHazBFAkGk=",
+  "pci": true,
+  "cvv": true,
+  "inputType": "text",
+  "inputMaxLength": 16,
+  "cvvContainerID": "cvvID"
+}
 ```
 
 Error in network
