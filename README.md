@@ -10,4 +10,12 @@ Example based on https://jsfiddle.net/TokenExSupport/jupnz2rf/, to show loading 
    1. Clone repository
    2. Open file://site.html
    3. Click load
-   4. Field with **pan was not loaded from tokenex**, in network an error
+   4. Field with **pan was not loaded from tokenex, and there is error in network**
+   
+Passed tokenex iframe config can be found in console:
+```json
+todo
+```
+
+Error in network
+![alt text](screenshots/img.png)
