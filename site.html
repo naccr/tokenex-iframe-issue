@@ -2,14 +2,26 @@
 
 <head>
     <meta name="viewport" content="width=device-width"/>
-    <link rel="stylesheet" href="main.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/hmac-sha256.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64-min.js"></script>
-    <title>Index</title>
+    <title>Site</title>
 </head>
 
 <h2>Site</h2>
-<iframe src="https://naccr.github.io/tokenex-iframe-issue/payment_page.html" width="600" height="800"/>
 
+<script>
+    function load() {
+        const src = document.getElementById('src').value
+        console.log("Iframe src (site): " + src);
+        console.log("Origin (site): " + location.origin)
+        document.getElementById('iframe').src = src + '?origin=' + location.origin
+        return false;
+    }
+</script>
+
+<form onsubmit="return load();">
+    <input id="src" name="src" type="input" value="https://naccr.github.io/tokenex-iframe-issue/payment_page.html">
+    <input type="submit" value="Load payment page">
+</form>
+
+<iframe id="iframe" width="600" height="800"/>
 
 </html>
