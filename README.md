@@ -12,7 +12,7 @@ Example based on https://jsfiddle.net/TokenExSupport/jupnz2rf/, to show loading 
    3. Click load
    4. Field with **pan was not loaded from tokenex, and there is error in network**
    
-Passed tokenex iframe config can be found in console:
+Passed tokenex iframe config can be found in console (difference in `origin: https://naccr.github.io,file://`):
 ```json
 {
   "origin": "https://naccr.github.io,file://",
@@ -28,5 +28,5 @@ Passed tokenex iframe config can be found in console:
 }
 ```
 
-Error in network
+Error in network `Invalid Origin; Origin must use HTTPs`, looks there is no ability to use `file://` for root page
 ![alt text](screenshots/img.png)
