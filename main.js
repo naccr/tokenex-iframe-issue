@@ -7,7 +7,7 @@ var formattedDate = d.getUTCFullYear() + twoDigit(d.getUTCMonth() + 1) + twoDigi
 var txSecretKey = "qr7aj514cRwGIIS9Hh0Ju3Vdp8qas6D0khxaMmPT";
 var txID = "6468548879812671";
 var txTokenScheme = "1";
-var txOrigin = "file://,http://localhost:63342";
+var txOrigin = "https://naccr.github.io,https://naccr.github.io";
 // var txOrigin = "file://";
 var message = (txID + "|" + txOrigin + "|" + formattedDate + "|" + txTokenScheme);
 console.log("Message: " + message);
