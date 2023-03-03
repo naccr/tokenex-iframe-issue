@@ -1,0 +1,65 @@
+<html style="background-color: aqua">
+
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/hmac-sha256.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64-min.js"></script>
+    <title>Payment page</title>
+</head>
+
+<h2>Payment page</h2>
+
+<form>
+    <label>Credit Card Number</label>
+    <div id="tokenExIframeDiv"></div>
+    <label>Security Code</label>
+    <div id="cvvID"></div>
+</form>
+
+<script src="https://eu1-htp.tokenex.com/Iframe/Iframe-v3.min.js"></script>
+<script>
+    function twoDigit(n) {
+        return (n < 10 ? '0' : '') + n;
+    }
+
+    function loadTokenex() {
+        // get parent origin if exists
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        var originParent = urlParams.get('origin')
+
+        // prepare tokenex iframeConfig
+        var d = new Date();
+        var formattedDate = d.getUTCFullYear() + twoDigit(d.getUTCMonth() + 1) + twoDigit(d.getUTCDate()) + twoDigit(d.getUTCHours()) + twoDigit(d.getUTCMinutes()) + twoDigit(d.getUTCSeconds());
+        var txSecretKey = "qr7aj514cRwGIIS9Hh0Ju3Vdp8qas6D0khxaMmPT";
+        var txID = "6468548879812671";
+        var txTokenScheme = "1";
+        var txOrigin = location.origin
+        var message = (txID + "|" + txOrigin + "|" + formattedDate + "|" + txTokenScheme);
+        console.log("Message for auth key: " + message);
+
+        var hash = CryptoJS.HmacSHA256(message, txSecretKey);
+        var authkey = CryptoJS.enc.Base64.stringify(hash);
+
+
+        var iframeConfig = {
+            origin: txOrigin,
+            timestamp: formattedDate,
+            tokenExID: txID,
+            tokenScheme: txTokenScheme,
+            authenticationKey: authkey,
+            pci: true, // change to true and inputMaxLength is not respected
+            cvv: true,
+            inputType: 'text',
+            inputMaxLength: 16,
+            cvvContainerID: "cvvID"
+        }
+        console.log("Tokenex iframeConfig: " + JSON.stringify(iframeConfig) )
+
+        var iframe = new TokenEx.Iframe("tokenExIframeDiv", iframeConfig);
+        iframe.load();
+    }
+
+    loadTokenex();
+</script>
+</html>
